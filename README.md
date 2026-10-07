@@ -45,7 +45,7 @@ bond data and the AER.
 | Role | Responsibility |
 |---|---|
 | CEO | Coordination, introduction and conclusion, pitch opening and the ask |
-| CIO | Prototype, technology section, dataset |
+| CTO | Prototype, technology section, dataset |
 | COO | Regulation, privacy, partnerships, risk |
 | CMO | Market sizing, competitors, go-to-market |
 | CFO | Business model, projections, funding ask |
