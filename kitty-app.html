@@ -182,30 +182,30 @@
     '<div class="potcard warnstate">'+
       '<div class="lbl">Projected when the bill is paid</div>'+
       '<div class="amt">−$194</div>'+
-      '<div class="sub">Electricity $742, due 14 July</div>'+
+      '<div class="sub">Electricity $742, due 14 July · paid 21 July</div>'+
       '<div class="bar red"><i style="width:74%"></i></div>'+
       '<div class="barnote"><span>Pot will reach</span><span>$548 of $742</span></div>'+
     '</div>'+
     '<div class="sec">Why</div>'+
     '<div class="list">'+
       '<div class="item"><div class="nm"><b>Jai · 1 June</b><em>Direct debit failed</em></div><span class="amt">−$332.68</span></div>'+
-      '<div class="item"><div class="nm"><b>Jai · 8 June</b><em>Direct debit failed</em></div><span class="amt">−$332.68</span></div>'+'<div class="item"><div class="nm"><b>Jai · 22 June</b><em>Direct debit due</em></div><span class="amt">−$332.68</span></div>'+
+      '<div class="item"><div class="nm"><b>Jai · 8 June</b><em>Direct debit failed</em></div><span class="amt">−$332.68</span></div>'+'<div class="item"><div class="nm"><b>Jai · 22 June</b><em>Direct debit failed</em></div><span class="amt">−$332.68</span></div>'+
     '</div>'+
     '<div class="sec">Fix it</div>'+
     '<button class="cta">Send Jai a reminder</button>'+
-    '<button class="cta ghost">Add $38.80 a week to everyone</button>';
+    '<button class="cta ghost">Add $9.70 a week each</button>';
 
   var FIXED = ''+
     '<div class="potcard">'+
       '<div class="lbl">After arrears were collected</div>'+
       '<div class="amt">$804</div>'+
-      '<div class="sub">Electricity settled and the pot back in credit</div>'+
+      '<div class="sub">Electricity paid late, pot back in credit</div>'+
       '<div class="bar"><i style="width:100%"></i></div>'+
       '<div class="barnote"><span>Pot after arrears collected</span><span>$804</span></div>'+
     '</div>'+
     '<div class="sec">What happened</div>'+
     '<div class="list">'+
-      '<div class="item">'+ava("J")+'<div class="nm"><b>Jai cleared his arrears</b><em>27 July · three missed weeks</em></div><span class="amt">$998</span><span class="pill">Paid</span></div>'+
+      '<div class="item">'+ava("J")+'<div class="nm"><b>Jai cleared his arrears</b><em>27 July · three missed Mondays</em></div><span class="amt">$998</span><span class="pill">Paid</span></div>'+
       '<div class="item"><div class="nm"><b>Electricity</b><em>Sydney Power Co · 21 July</em></div><span class="amt">$742</span><span class="pill">Paid</span></div>'+
     '</div>'+
     '<div class="sec">The house this quarter</div>'+
@@ -229,17 +229,17 @@
       tab:0, appTitle:"Newtown house", push:null },
 
     { title:"Kitty warns the house five weeks early",
-      body:"It compares what the pot will hold on 14 July against the $742 electricity bill, and sends everyone the same notification. In the data, the pot reaches $548 and the bill leaves it $194 short.",
-      screen: HOME({jai:"bad", flag:true, amt:"$281", sub:"Collected this Monday · one payment failed", pct:28, r:"$281 of $742"}),
+      body:"It compares what the pot will hold when the bill is paid (21 July) against the $742 electricity bill, and sends everyone the same notification. In the data, the pot reaches $548 and the bill leaves it $194 short.",
+      screen: HOME({jai:"bad", flag:true, amt:"$308", sub:"Monday 8 June · one payment failed", pct:41, r:"$308 of $742"}),
       tab:0, appTitle:"Newtown house",
       push:{t:"The pot will be $194 short", b:"The electricity bill is due 14 July. Tap to see how to fix it."} },
 
     { title:"The shortfall, and two ways out",
-      body:"Jai can clear the three missed weeks, or the house can add $38.80 each per week until the bill arrives. The choice stays with the household.",
+      body:"Jai can clear the three missed weeks, or the house can add $9.70 each per week ($38.80 in total) until the bill is paid. The choice stays with the household.",
       screen: SHORTFALL, tab:1, appTitle:"Electricity · 14 July", push:null },
 
     { title:"The pot recovers, nobody chased anybody",
-      body:"Once Jai cleared the three missed weeks the pot recovered. Every other bill in the six months of data was paid on time.",
+      body:"Jai cleared the three missed Mondays on 27 July, after the alert, and the pot went back into credit. The electricity bill was paid 7 days late; in this house, in the data, that was the only shortfall.",
       screen: FIXED, tab:1, appTitle:"Electricity · paid", push:null }
   ];
 
