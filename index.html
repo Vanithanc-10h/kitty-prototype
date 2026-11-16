@@ -70,6 +70,7 @@
   .kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px}
   .kv dt{color:var(--soft)} .kv dd{margin:0;font-variant-numeric:tabular-nums}
   .note{font-size:12.5px;color:var(--soft)}
+  #panel a{color:#1C6B4E;font-weight:600}
   svg text{fill:var(--soft);font-size:11px}
   footer{font-size:12px;color:var(--soft);margin-top:22px;line-height:1.6}
 
@@ -447,7 +448,7 @@ var K = (function (DATA) {
     var failed=week.filter(function(c){return c.status!=='Successful';}).length;
     var bills=[]; Object.keys(f.events).sort().forEach(function(d){ f.events[d].labels.forEach(function(l){ if(l.k==='bill'&&bills.length<5) bills.push({d:d,l:l}); }); });
     var led=E.ledgerTo(state.hid,state.asof,8);
-    var html='<div class="grid">';
+    var html='<p style="margin:0 0 12px;font-size:15px;color:var(--soft)"><b style="color:var(--ink)">What Kitty does:</b> collects each housemate\'s share by PayTo, holds it in a trust account, pays the bills on the due date and warns the house early. Demo data is synthetic.</p><div class="grid">';
     var target=Math.max.apply(null,[800].concat(bills.map(function(b){return b.l.a;})));
     html+='<div class="card full pot'+(f.alert?' bad':'')+'"><div class="jarwrap">'+jar(f.pot0,target,f.alert)+'<div><div class="lbl">In the pot</div><div class="big">'+cnt('pot',f.pot0,0)+'</div><div class="sub">'+esc(h.name)+' · '+fdl(state.asof)+'</div><div class="sub"><b>'+Math.round(Math.max(0,Math.min(1,f.pot0/target))*100)+'%</b> of the next big bill</div></div></div>'+
       (f.alert?'<p style="margin:10px 0 0"><b>Heads up:</b> on current patterns the pot is short by '+cnt('def',f.deficit,0)+' when '+esc(f.cause?f.cause.n:'a bill')+' falls due on '+fd(f.firstNeg)+'. <a href="#" data-go="forecast">See forecast</a></p>':'<p class="sub" style="margin:10px 0 0">The jar shows the pot against the next big bill. No shortfall projected in the next 8 weeks.</p>')+'</div>';
@@ -630,7 +631,7 @@ var K = (function (DATA) {
   }
 
   /* ---------- INVESTOR: unit economics ---------- */
-  var BIZ={hh:2500,attach:30,cac:30,fixed:600000};
+  var BIZ={hh:8000,attach:30,cac:30,fixed:495000};
   function bizView(){
     var members=3.8, sub=members*2*12, pay=members*52*0.28;
     var saving=DATA.energy.reduce(function(a,e){return a+e.saving;},0)/DATA.energy.length;
@@ -643,8 +644,8 @@ var K = (function (DATA) {
       '<div class="tile"><div class="v">'+(be?be.toLocaleString():'never')+'</div><div class="l">households to cover '+m0(BIZ.fixed)+' of fixed costs</div></div>'+
       '<div class="tile"><div class="v">'+(payback?payback.toFixed(1)+' mo':'–')+'</div><div class="l">to earn back the '+m0(BIZ.cac)+' acquisition cost</div></div></div>';
     html+='<div class="grid"><div class="card"><h2>Levers (all our own assumptions)</h2>'+
-      slider2('hh','Households in year one',200,10000,100,BIZ.hh)+slider2('attach','Households that switch energy plan (%)',0,100,1,BIZ.attach)+slider2('cac','Cost to acquire a household ($)',0,150,1,BIZ.cac)+slider2('fixed','Fixed costs a year ($)',100000,2000000,50000,BIZ.fixed)+
-      '<p class="note" style="margin:8px 0 0">Fixed in the model: 3.8 members per house, $2 per member per month, 20% of the first-year energy saving, $0.28 per collection (Pricing sheet), average saving '+m0(saving)+' from the Energy_Switch sheet.</p></div>';
+      slider2('hh','Households in year one',200,15000,100,BIZ.hh)+slider2('attach','Households that switch energy plan (%)',0,100,1,BIZ.attach)+slider2('cac','Cost to acquire a household ($)',0,150,1,BIZ.cac)+slider2("fixed","Fixed costs a year ($)",100000,2000000,5000,BIZ.fixed)+
+      '<p class="note" style="margin:8px 0 0">Team assumptions: fixed costs $495,000 a year (engineering $300k, compliance and legal $70k, partner fees $35k, cloud, security and insurance $20k, operations and part-paid founders $70k) and $30 to reach a household. Fixed in the model: 3.8 members per house, $2 per member per month, 20% of the first-year energy saving, $0.28 per collection (Pricing sheet), average saving '+m0(saving)+' from the Energy_Switch sheet.</p></div>';
     var rows=[['Subscription',sub],['Payments cost',-pay],['Energy switching share',sw]];
     var mx=Math.max(sub,pay,sw,1);
     html+='<div class="card"><h2>Where a household\'s money comes from</h2>'+rows.map(function(r){ return '<div style="margin:10px 0"><div style="display:flex;justify-content:space-between;font-size:14px"><span>'+r[0]+'</span><b>'+money(r[1])+'</b></div><div class="bar2"><i style="width:'+Math.abs(r[1])/mx*100+'%;background:'+(r[1]<0?'var(--red)':'var(--pot)')+'"></i></div></div>'; }).join('')+
